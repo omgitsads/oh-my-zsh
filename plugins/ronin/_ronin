@@ -1,0 +1,29 @@
+#compdef ronin
+#autoload
+
+# EY Ronin Autocompletion
+
+local -a _1st_arguments
+_1st_arguments=(
+  'check:Run ey-check against an AppCloud instance'
+  'oshi: Run commands in parallel across an AppCloud environment'
+  'screen:Open a screen to an AppCloud instance'
+  'search:Search for an AppCloud customer'
+  'show:Show AppCloud customer details'
+  'ssh:Install SSH keys onto an AppCloud customers environment'
+  'web:Open an AppCloud customer web dashboard'
+)
+
+local expl
+
+_arguments \
+  '(-v --version)'{-v,--version}'[show version]' \
+  '(-h --help)'{-h,--help}'[show help]' \
+  '*:: :->subcmds' && return 0
+
+if (( CURRENT == 1 )); then
+  _describe -t commands "ronin subcommand" _1st_arguments
+  return
+fi
+
+#compctl -k "(check oshi screen search show ssh web)" ronin
