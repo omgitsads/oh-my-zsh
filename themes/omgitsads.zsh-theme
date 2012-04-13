@@ -1,7 +1,9 @@
 if [ "$(whoami)" = "root" ]; then NCOLOR="red"; else NCOLOR="yellow"; fi
 
-PROMPT='%{$fg[$NCOLOR]%}$(hostname):%c ➤ %{$reset_color%} '
-RPROMPT='%{$fg[$NCOLOR]%}%p$(rvm_prompt_info)$(git_prompt_info)%{$reset_color%}'
+local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+
+PROMPT='${smiley} %{$fg[$NCOLOR]%}$(hostname):%~ ➤ %{$reset_color%} '
+RPROMPT='%{$fg[$NCOLOR]%}%p$(rvm_prompt_info)$(~/bin/git-cwd-info.rb)%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
